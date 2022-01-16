@@ -1,0 +1,13 @@
+<nav th:fragment="nav_bar">
+    <a th:href="@{/}"><img src="img/Logo.png" alt="logo" style="width: 10%; height: auto;"></a>
+    <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%">
+            <div class="col" style="text-align: center;">
+                <a th:href="@{/abuela/lista}" style="padding: 5px">Ver abuelas</a>
+                <a th:href="@{/ingresos/cobro}" style="padding: 5px">Cargar ingresos</a>
+                <a th:href="@{/gastos}" style="padding: 5px">Cargar gastos</a>
+                <a th:href="@{/login}" class="text-white">Login</a>
+                <a th:href="@{/logout}" class="text-white">Logout</a>
+            </div>
+        </div>
+</nav>
