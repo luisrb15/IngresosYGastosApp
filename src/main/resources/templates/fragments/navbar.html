@@ -1,13 +1,19 @@
 <nav th:fragment="nav_bar">
-    <a th:href="@{/}"><img src="img/Logo.png" alt="logo" style="width: 10%; height: auto;"></a>
-    <div class="row" style="width: 100%">
-        <div class="row" style="width: 100%">
-            <div class="col" style="text-align: center;">
-                <a th:href="@{/abuela/lista}" style="padding: 5px">Ver abuelas</a>
-                <a th:href="@{/ingresos/cobro}" style="padding: 5px">Cargar ingresos</a>
-                <a th:href="@{/gastos}" style="padding: 5px">Cargar gastos</a>
-                <a th:href="@{/login}" class="text-white">Login</a>
-                <a th:href="@{/logout}" class="text-white">Logout</a>
-            </div>
-        </div>
+	<a th:href="@{/}">
+		<img src="img/Logo.png" alt="logo" style="width: 10%; height: auto;">
+	</a>
+	<div class="row" style="width: 100%">
+		<div class="col" style="text-align: center;">
+			<a th:href="@{/registro}" th:if="${session.usuariosession == null}">Registrate</a>
+			<a th:href="@{/abuela/lista}" th:if="${session.usuariosession != null}" style="padding: 5px">Ver
+				abuelas</a>
+			<a th:href="@{/ingreso/cobro}" th:if="${session.usuariosession != null}" style="padding: 5px">Cargar
+				ingresos</a>
+			<a th:href="@{/gastos}" th:if="${session.usuariosession != null}" style="padding: 5px">Cargar gastos</a>
+			<a th:href="@{/login}" th:if="${session.usuariosession == null}" class="text-white">Login</a>
+			<a th:href="@{/logout}" th:if="${session.usuariosession != null}" class="text-white">Logout</a>
+			<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/dashboard}">Dashboard</a>
+		</div>
+	</div>
+
 </nav>

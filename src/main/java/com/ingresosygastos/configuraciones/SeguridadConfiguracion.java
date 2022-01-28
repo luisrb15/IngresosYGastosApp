@@ -14,38 +14,37 @@ import com.ingresosygastos.services.UsuarioService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
-public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	@Qualifier("usuarioService")
 	public UsuarioService usuarioService;
-	
+
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(usuarioService).
-		passwordEncoder(new BCryptPasswordEncoder());
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-				.antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll()
-				.and().formLogin()
-					.loginPage("/login")
-						.loginProcessingUrl("/logincheck")
-						.usernameParameter("email")
-						.passwordParameter("clave")
-						.defaultSuccessUrl("/loginsuccess")
-						.failureUrl("/login?error=error")
-						.permitAll()
+				.authorizeRequests()
+				.antMatchers("/admin/*").hasRole("ADMIN")
+				.antMatchers("/css/*", "/js/*", "/img/*", "/**")
+				.permitAll()
+				.and()
+				.formLogin()
+				.loginPage("/login")
+				.loginProcessingUrl("/logincheck")
+				.usernameParameter("email")
+				.passwordParameter("clave")
+				.defaultSuccessUrl("/")
+				.permitAll()
 				.and().logout()
-					.logoutUrl("/logout")
-					.logoutSuccessUrl("/")
-					.permitAll()
-				.and().csrf()
-					.disable();
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login?logout")
+				.permitAll()
+				.and().csrf().disable();
 	}
-	}
+}

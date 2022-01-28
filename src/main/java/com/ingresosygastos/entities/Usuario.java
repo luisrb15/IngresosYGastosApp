@@ -42,6 +42,9 @@ public class Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date editado;
 
+    @Temporal(TemporalType.DATE)
+    private Date baja;
+    
 	private boolean activo;
 
 	public Usuario() {
@@ -112,6 +115,14 @@ public class Usuario implements Serializable {
 		this.editado = editado;
 	}
 
+    public Date getBaja() {
+        return baja;
+    }
+
+    public void setBaja(Date baja) {
+        this.baja = baja;
+    }
+    
 	public boolean isActivo() {
 		return activo;
 	}

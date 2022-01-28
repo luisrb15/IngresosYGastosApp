@@ -54,7 +54,7 @@ public class IngresoController {
 		try {
 			enviarMail(ingresoService.guardar(montoCobrado, abuela).getId());
 			modelo.put("exito", "Registro exitoso");
-			return "form-ingreso";
+			return "list-ingresos";
 		} catch (Exception e) {
 			modelo.put("error", "Falto algun dato");
 			return "form-ingreso";

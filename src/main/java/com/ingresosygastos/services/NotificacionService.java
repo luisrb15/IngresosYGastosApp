@@ -43,9 +43,9 @@ public class NotificacionService {
 				message.setFrom("flordelbambu@gmail.com");
 				message.setTo(ingreso.getAbuela().getEmail());
 				message.setSubject(ingreso.getAbuela().getApellido() + " " + ingreso.getAbuela().getNombre());
-				message.setText("Estimado familiar.\n Hemos registrado el cobro por $" + 
+				message.setText("Estimado familiar.\n Hemos registrado el cobro por $" +
 					ingreso.getMontoCobrado() + 
-					"de la residente " + 
+					" de la residente " +
 					ingreso.getAbuela().getApellido() + 
 					" " + 
 					ingreso.getAbuela().getNombre());
